@@ -19,6 +19,13 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('phone')->nullable();
+            $table->string('avatar')->nullable();
+            $table->enum('role', ['tenant', 'landlord', 'admin'])->default('tenant');
+            $table->enum('subscription_plan', ['free', 'standard', 'gold', 'platinum'])->default('free');
+            $table->date('subscription_expires_at')->nullable();
+            $table->boolean('is_verified')->default(false);
+            $table->string('verification_document')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
