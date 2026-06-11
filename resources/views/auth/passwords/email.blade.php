@@ -2,6 +2,14 @@
 
 @section('title', 'Reset Password - Nestly')
 
+{{-- Override header with empty content to hide it --}}
+@section('header')
+@endsection
+
+{{-- Override bottom nav with empty content to hide it --}}
+@section('bottom-nav')
+@endsection
+
 @section('content')
 <div style="min-height: 100vh; background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%); display: flex; align-items: center; justify-content: center; padding: 20px;">
     <div style="max-width: 420px; width: 100%;">

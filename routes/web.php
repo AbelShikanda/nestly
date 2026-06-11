@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // ========== PUBLIC ROUTES (No Login Required) ==========
-Route::get('/', [ExploreController::class, 'welcome'])->name('welcome');
+Route::redirect('/', '/home');
+Route::get('/home', [ExploreController::class, 'welcome'])->name('welcome');
 Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
 Route::get('/property/{id}', [ExploreController::class, 'show'])->name('property.show');
 Route::get('/search', [ExploreController::class, 'search'])->name('search');

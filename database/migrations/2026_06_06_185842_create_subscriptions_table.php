@@ -20,8 +20,8 @@ class CreateSubscriptionsTable extends Migration
             $table->decimal('amount', 10, 2);
             $table->string('payment_method')->nullable();
             $table->string('transaction_id')->nullable();
-            $table->timestamp('starts_at');
-            $table->timestamp('expires_at');
+            $table->timestamp('starts_at')->nullable();  // ← Changed to nullable
+            $table->timestamp('expires_at')->nullable(); // ← Changed to nullable
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

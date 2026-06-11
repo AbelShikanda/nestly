@@ -10,43 +10,49 @@
 </head>
 <body>
 
-    {{-- Unified Header with Search & Notification --}}
-    <div class="search-header" id="searchHeader">
-        <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" class="search-input" id="searchInput" placeholder="Search Nairobi, Mombasa, Kisumu..." autocomplete="off">
-            <button class="search-clear" id="searchClearBtn">✕</button>
+    {{-- Unified Header --}}
+    @section('header')
+        <div class="search-header" id="searchHeader">
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search Nairobi, Mombasa, Kisumu..." autocomplete="off">
+                <button class="search-clear" id="searchClearBtn">✕</button>
+            </div>
+            @auth
+                <button class="header-notification-btn" id="notificationBtn">
+                    💬<span class="header-notification-badge" id="chatBadge">0</span>
+                </button>
+            @endauth
         </div>
-        @auth
-            <button class="header-notification-btn" id="notificationBtn">
-                💬<span class="header-notification-badge" id="chatBadge">0</span>
-            </button>
-        @endauth
-    </div>
+    @show
 
     {{-- Main Content --}}
     <main>
         @yield('content')
     </main>
 
-    {{-- Bottom Navigation (Only Explore & Profile) --}}
-    <div class="bottom-nav" id="bottomNav">
-        <div class="nav-item" data-nav="explore">
-            <div class="nav-icon">🔍</div>
-            <div class="nav-label">Explore</div>
-        </div>
-        @auth
-            <div class="nav-item" data-nav="profile">
-                <div class="nav-icon">👤</div>
-                <div class="nav-label">Profile</div>
+    {{-- Bottom Navigation --}}
+    @section('bottom-nav')
+        <div class="bottom-nav" id="bottomNav">
+            <div class="nav-item" data-nav="explore">
+                <div class="nav-icon">🔍</div>
+                <div class="nav-label">Explore</div>
             </div>
-        @endauth
-    </div>
+            @auth
+                <div class="nav-item" data-nav="profile">
+                    <div class="nav-icon">👤</div>
+                    <div class="nav-label">Profile</div>
+                </div>
+            @endauth
+        </div>
+    @show
 
-    {{-- Role-based Add Button (Landlord only) --}}
+    {{-- Role-based Add Button --}}
     @auth
         @if(auth()->user() && auth()->user()->role === 'landlord')
-            <button class="add-listing-btn" id="addListingBtn">➕</button>
+            @section('add-button')
+                <button class="add-listing-btn" id="addListingBtn">➕</button>
+            @show
         @endif
     @endauth
 
@@ -54,7 +60,6 @@
     <div class="demo-toast" id="demoToast">🇰🇪 Kenya Real Estate</div>
     <div class="no-results-toast" id="noResultsToast">✨ No matching properties</div>
 
-    {{-- Include Modals --}}
     @include('components.detail-card')
     @include('components.profile-card')
     @include('components.chat-modal')

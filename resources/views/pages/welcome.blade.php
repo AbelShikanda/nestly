@@ -2,6 +2,14 @@
 
 @section('title', 'Welcome to Nestly - Kenya Real Estate')
 
+{{-- Override header with empty content to hide it --}}
+@section('header')
+@endsection
+
+{{-- Override bottom nav with empty content to hide it --}}
+@section('bottom-nav')
+@endsection
+
 @section('content')
 <div style="min-height: 100vh; background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px 20px;">
     <div style="text-align: center; max-width: 600px;">

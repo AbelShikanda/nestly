@@ -33,6 +33,7 @@ class CreatePropertiesTable extends Migration
             $table->boolean('is_verified')->default(false);
             $table->integer('views_count')->default(0);
             $table->integer('inquiry_count')->default(0);
+            $table->softDeletes();
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
             
@@ -40,6 +41,19 @@ class CreatePropertiesTable extends Migration
             $table->index('price');
             $table->index('bedrooms');
             $table->index('status');
+
+            $table->enum('property_type', ['apartment', 'house', 'villa', 'commercial', 'land', 'townhouse'])->default('apartment')->after('description');
+            $table->enum('listing_type', ['sale', 'rent', 'short_stay'])->default('rent')->after('property_type');
+            $table->enum('furnishing', ['furnished', 'semi_furnished', 'unfurnished'])->default('unfurnished')->after('listing_type');
+            $table->json('amenities')->nullable()->after('furnishing');
+            $table->string('featured_tag')->nullable()->after('is_featured');
+            $table->integer('popularity_score')->default(0)->after('views_count');
+            $table->timestamp('last_viewed_at')->nullable()->after('popularity_score');
+            
+            $table->index('property_type');
+            $table->index('listing_type');
+            $table->index('popularity_score');
+            
         });
     }
 

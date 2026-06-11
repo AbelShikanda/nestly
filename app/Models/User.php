@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +20,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'avatar',
+        'role',
+        'subscription_plan',
+        'subscription_expires_at',
+        'is_verified',
+        'verification_document',
+        'company',
+        'bio',
+        'location',
     ];
 
     /**
@@ -39,6 +49,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'subscription_expires_at' => 'datetime',
+        'is_verified' => 'boolean',
     ];
 
     /**
@@ -117,6 +129,15 @@ class User extends Authenticatable
     }
 
     /**
+     * Favorite properties
+     */
+    public function favorites()
+    {
+        return $this->belongsToMany(Property::class, 'user_favorites', 'user_id', 'property_id')
+            ->withTimestamps();
+    }
+
+    /**
      * Check if user is landlord
      */
     public function isLandlord()
@@ -141,6 +162,17 @@ class User extends Authenticatable
     }
 
     /**
+     * Get avatar URL attribute
+     */
+    public function getAvatarUrlAttribute()
+    {
+        if ($this->avatar) {
+            return asset('storage/' . $this->avatar);
+        }
+        return 'https://ui-avatars.com/api/?background=facc15&color=1a1e24&name=' . urlencode($this->name);
+    }
+
+    /**
      * Get unread messages count
      */
     public function getUnreadMessagesCountAttribute()
@@ -155,5 +187,13 @@ class User extends Authenticatable
         }
         
         return $count;
+    }
+
+    /**
+     * Get user's full name
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->name;
     }
 }

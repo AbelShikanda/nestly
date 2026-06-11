@@ -2,6 +2,14 @@
 
 @section('title', 'Messages - Nestly')
 
+{{-- Override header with empty content to hide it --}}
+@section('header')
+@endsection
+
+{{-- Override bottom nav with empty content to hide it --}}
+@section('bottom-nav')
+@endsection
+
 @section('content')
 <div style="height: 100vh; background: #0a0a0f; padding-top: 70px;">
     <div class="chatlist-header" style="position: fixed; top: 0; left: 0; right: 0; background: #121218; padding: 16px; z-index: 10;">

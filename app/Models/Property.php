@@ -32,6 +32,13 @@ class Property extends Model
         'views_count',
         'inquiry_count',
         'expires_at',
+        'property_type',
+        'listing_type',
+        'furnishing',
+        'amenities',
+        'featured_tag',
+        'popularity_score',
+        'last_viewed_at',
     ];
 
     protected $casts = [

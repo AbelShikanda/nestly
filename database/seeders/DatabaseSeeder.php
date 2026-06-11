@@ -14,9 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            CreateAdminSeeder::class,
-            PropertyCategoriesSeeder::class,
-            PropertyTypesSeeder::class,
+            DatabaseStarterSeeder::class,
         ]);
     }
 }

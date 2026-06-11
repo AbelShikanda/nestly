@@ -2,6 +2,14 @@
 
 @section('title', 'Chat with ' . ($landlordName ?? 'Landlord'))
 
+{{-- Override header with empty content to hide it --}}
+@section('header')
+@endsection
+
+{{-- Override bottom nav with empty content to hide it --}}
+@section('bottom-nav')
+@endsection
+
 @section('content')
 <div class="chat-modal active" style="transform: translateX(0);">
     <div class="chat-header">
