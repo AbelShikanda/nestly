@@ -1568,6 +1568,37 @@ div.cs-select {
 	overflow-x: hidden;
 	position: relative;
 }
+
+.fh5co-mobile-nav {
+	display: none;
+	@media screen and (max-width: $screen-sm) {
+		display: block;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		background: $brand-primary;
+		z-index: 9999;
+		ul {
+			display: flex;
+			justify-content: space-around;
+			margin: 0;
+			padding: 10px 0;
+			li {
+				list-style: none;
+				a {
+					color: $brand-white;
+					font-size: 18px;
+					padding: 10px;
+					@include border-radius(0);
+					&:hover {
+						background: rgba($brand-white, 0.1);
+					}
+				}
+			}
+		}
+	}
+}
 .fh5co-offcanvas {
 	overflow: hidden;
 	#fh5co-wrapper {

@@ -26,10 +26,26 @@
         </div>
     @show
 
+<<<<<<< HEAD
     {{-- Main Content --}}
     <main>
         @yield('content')
     </main>
+=======
+    <!-- Mobile Nav -->
+    <div id="fh5co-mobile-nav">
+        <ul>
+            <li><a href="{{ route('home') }}">Home</a></li>
+            <li><a href="{{ route('properties') }}">Explore</a></li>
+            <li><a href="{{ route('properties.create') }}" style="border-left: 1px solid #fff; border-right: 1px solid #fff;">Add</a></li>
+            <li><a href="{{ route('properties') }}">Search</a></li>
+            <li><a href="#" id="mobile-profile">Profile</a></li>
+        </ul>
+    </div>
+    </div>
+
+    <!-- jQuery -->
+>>>>>>> 5dca717 (Phase 1: PostgreSQL migration + mobile-first UI + functional buttons/forms)
 
     {{-- Bottom Navigation --}}
     @section('bottom-nav')

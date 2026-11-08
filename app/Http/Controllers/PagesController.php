@@ -46,7 +46,7 @@ class PagesController extends Controller
     {
         $pageTitle = 'Contact Us';
         $breadcrumbLinks = [
-            'DescriptionOne' => 'We alway',
+            'DescriptionOne' => 'We always',
             'DescriptionTwo' => 'to talk to our customers',
             'url' => '/contact',
             'label' => 'contact',
@@ -60,20 +60,71 @@ class PagesController extends Controller
         );
     }
 
-    public function properties()
+    public function storeContact(Request $request)
     {
-        $pageTitle = 'View Apartments';
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        // TODO: Send email or store to database
+        return back()->with('success', 'Message sent successfully!');
+    }
+
+    public function propertyShow($slug)
+    {
+        $pageTitle = 'Property Details';
         $breadcrumbLinks = [
-            'DescriptionOne' => 'You will',
-            'DescriptionTwo' => 'Our other apartments',
-            'url' => '/properties',
-            'label' => 'apartments',
+            'DescriptionOne' => 'Property details',
+            'DescriptionTwo' => 'for',
+            'url' => '/property/' . $slug,
+            'label' => 'property',
+        ];
+        $property = App\Models\Property::where('slug', $slug)->firstOrFail();
+        return view(
+            'pages.property-show',
+            with([
+                'pageTitle' => $pageTitle,
+                'breadcrumbLinks' => $breadcrumbLinks,
+                'property' => $property,
+            ]),
+        );
+    }
+
+    public function filterProperties(Request $request)
+    {
+        $query = App\Models\Property::query();
+
+        if ($request->filled('status')) {
+            $query->where('promotion', $request->status);
+        }
+        if ($request->filled('type')) {
+            $query->where('types_id', $request->type);
+        }
+        if ($request->filled('price')) {
+            $query->where('price', '>=', $request->price);
+        }
+        if ($request->filled('city')) {
+            $query->where('town', 'like', '%' . $request->city . '%');
+        }
+
+        $properties = $query->paginate(10);
+        $pageTitle = 'Filter Results';
+        $breadcrumbLinks = [
+            'DescriptionOne' => 'Filter results',
+            'DescriptionTwo' => 'for',
+            'url' => '/properties/filter',
+            'label' => 'results',
         ];
         return view(
             'pages.properties',
             with([
                 'pageTitle' => $pageTitle,
                 'breadcrumbLinks' => $breadcrumbLinks,
+                'properties' => $properties,
+                'filterParams' => $request->all(),
             ]),
         );
     }

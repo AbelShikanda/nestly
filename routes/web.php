@@ -99,7 +99,35 @@ Route::get('/login-redirect', function () {
     return redirect()->route('login')->with('warning', 'Please login to access that page.');
 })->name('login.redirect');
 
+<<<<<<< HEAD
 // ========== FALLBACK ROUTE (404 handling) ==========
 Route::fallback(function () {
     return response()->view('errors.404', [], 404);
 });
+=======
+//     Route::resource('permissions', PermissionsController::class);
+//     Route::resource('roles', RolesController::class);
+
+//     Route::get('/promo', [PromoCodeController::class, 'index'])->name('promo.index');
+//     Route::get('/create/promo', [PromoCodeController::class, 'create'])->name('promo.create');
+//     Route::post('/create-promo', [PromoCodeController::class, 'createPromo'])->name('create.promo');
+//     Route::get('/promo-edit/{id}', [PromoCodeController::class, 'edit'])->name('promo.edit');
+//     Route::get('/promo-details/{id}', [PromoCodeController::class, 'show'])->name('promo.show');
+//     Route::PATCH('/promo-update/{id}', [PromoCodeController::class, 'update'])->name('promo.update');
+//     Route::DELETE('/promo-destroy/{id}', [PromoCodeController::class, 'destroy'])->name('promo.destroy');
+// });
+
+Auth::routes();
+
+Route::redirect('/', '/home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/agent', [PagesController::class, 'agent'])->name('agent');
+Route::get('/blog', [PagesController::class, 'blog'])->name('blog');
+Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
+Route::post('/contact', [PagesController::class, 'storeContact'])->name('contact.store');
+
+Route::get('/property/{property:slug}', [PagesController::class, 'propertyShow'])->name('property.show');
+
+Route::get('/properties/filter', [PagesController::class, 'filterProperties'])->name('properties.filter');
+>>>>>>> 5dca717 (Phase 1: PostgreSQL migration + mobile-first UI + functional buttons/forms)
