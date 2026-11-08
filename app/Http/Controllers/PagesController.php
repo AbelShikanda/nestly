@@ -69,8 +69,9 @@ class PagesController extends Controller
             'message' => 'required|string',
         ]);
 
-        // TODO: Send email or store to database
-        return back()->with('success', 'Message sent successfully!');
+        // TODO: Create ContactMessage model/migration for persistent storage
+        // For now, redirect with success feedback
+        return back()->with('success', 'Message received! We will get back to you soon.');
     }
 
     public function propertyShow($slug)
