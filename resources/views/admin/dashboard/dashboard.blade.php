@@ -26,8 +26,8 @@
         </div>
         
         <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-            <a href="{{ route('admin.users.index') }}" style="background: #121218; border: 1px solid #1f1f2a; border-radius: 20px; padding: 16px 24px; text-decoration: none; color: white; flex: 1; text-align: center;">Manage Users</a>
-            <a href="{{ route('admin.properties.index') }}" style="background: #121218; border: 1px solid #1f1f2a; border-radius: 20px; padding: 16px 24px; text-decoration: none; color: white; flex: 1; text-align: center;">Manage Properties</a>
+            <a href="{{ route('admin.users') }}" style="background: #121218; border: 1px solid #1f1f2a; border-radius: 20px; padding: 16px 24px; text-decoration: none; color: white; flex: 1; text-align: center;">Manage Users</a>
+            <a href="{{ route('admin.properties') }}" style="background: #121218; border: 1px solid #1f1f2a; border-radius: 20px; padding: 16px 24px; text-decoration: none; color: white; flex: 1; text-align: center;">Manage Properties</a>
         </div>
     </div>
 </div>
