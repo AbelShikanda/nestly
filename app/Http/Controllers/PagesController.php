@@ -80,6 +80,13 @@ class PagesController extends Controller
         return back()->with('success', 'Message received! We will get back to you soon.');
     }
 
+    public function subscribe(Request $request)
+    {
+        // Simple newsletter subscribe - just flash success
+        // TODO: Integrate with external service (Mailchimp/SendGrid) or create Newsletter model
+        return back()->with('success', 'You have been subscribed to our newsletter!');
+    }
+
     public function propertyShow($slug)
     {
         $pageTitle = 'Property Details';

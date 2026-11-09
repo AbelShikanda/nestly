@@ -19,6 +19,8 @@ Route::get('/blog', [PagesController::class, 'blog'])->name('blog');
 Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
 Route::post('/contact', [PagesController::class, 'storeContact'])->name('contact.store');
 
+Route::get('/newsletter/subscribe', [PagesController::class, 'subscribe'])->name('newsletter.subscribe');
+
 Route::get('/properties', [PagesController::class, 'properties'])->name('properties');
 Route::get('/property/{property:slug}', [PagesController::class, 'propertyShow'])->name('property.show');
 Route::get('/properties/filter', [PagesController::class, 'filterProperties'])->name('properties.filter');
