@@ -1,12 +1,12 @@
 # TASKS: Nestly PostgreSQL + Mobile-First + Functional UI
 
-## Current Sprint: Phase 2 Complete ✅
+## Current Sprint: Phase 3 - Persistence & Quality
 
 ### [1] DB Migration to PostgreSQL ✅✅✅
 - [x] Set up PostgreSQL database (DB_CONNECTION=pgsql, DB_HOST=127.0.0.1, DB_PORT=5433, DB_DATABASE=pabe_nestly_db, DB_USERNAME=abel_nestly, DB_PASSWORD=abel_nestly)
 - [x] Update `.env` with PostgreSQL connection settings
 - [x] Run `php artisan migrate:fresh` to refresh schema ✅
-- [x] Verify all 10 tables migrate successfully ✅
+- [x] Verify all 11 tables migrate successfully ✅ (users, password_resets, failed_jobs, admins, permission_tables, property_types, property_categories, properties, property_property_types, property_property_categories, contact_messages)
 
 ### [2] Routes & Controllers - Core Functionality ✅✅✅
 - [x] Add `POST /contact` route + `storeContact()` method in PagesController ✅
@@ -20,10 +20,11 @@
 - [x] Implement bottom mobile nav (Home/Explore/Add/Search/Profile) ✅
 - [x] Responsive hamburger menu infrastructure ✅
 
-### [4] Contact Form Backend ✅
+### [4] Contact Form Backend ✅✅
 - [x] Validation in `storeContact()` works ✅
 - [x] Success flash message framework in place ✅
-- [x] Improved redirect feedback with TODO for ContactMessage model ✅
+- [x] ContactMessage model + migration + persistent storage ✅
+- [x] Contact messages stored in DB via ContactMessage::create() ✅
 
 ### [5] Property Detail Page Styling ✅
 - [x] Add SCSS styles for `#fh5co-property-single` ✅
@@ -45,6 +46,6 @@
 - [ ] Verify asset compilation with `npm run dev`
 
 ---
-**Sprint complete**. All core functionality delivered: PostgreSQL migrated, routes registered, contact form validated, property show view created, mobile nav functional, admin CRUD in place.
+**Sprint complete**. Contact form now persists to database via ContactMessage model. 11 tables migrated. All core functionality delivered.
 
-**Next**: Phase 3 - Full mobile viewport testing, newsletter form action, and persistent contact form storage (ContactMessage model).
+**Next**: Phase 4 - Mobile viewport testing, newsletter form, and full quality checks.

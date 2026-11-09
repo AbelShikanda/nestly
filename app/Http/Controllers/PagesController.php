@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ContactMessage;
 
 class PagesController extends Controller
 {
@@ -69,8 +70,13 @@ class PagesController extends Controller
             'message' => 'required|string',
         ]);
 
-        // TODO: Create ContactMessage model/migration for persistent storage
-        // For now, redirect with success feedback
+        ContactMessage::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'subject' => $validated['subject'],
+            'message' => $validated['message'],
+        ]);
+
         return back()->with('success', 'Message received! We will get back to you soon.');
     }
 
